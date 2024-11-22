@@ -1,0 +1,198 @@
+/* Styling untuk halaman */
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 97.7vh;
+  color: #ffffff;
+  /* background-color: black; */
+  font-family: 'Arial', sans-serif;
+  padding: 0 2rem;
+}
+
+/* Styling untuk header */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0; /* Ubah dari 6.6rem ke 0 */
+  right: 0; /* Ubah dari 6.6rem ke 0 */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 8.6rem;
+  z-index: 10;
+  background-color: transparent;
+  box-shadow: 0px 2px 10px rgba(255, 255, 255, 0.39); /* Tambahkan bayangan putih */
+}
+
+
+.logo {
+  color: #00ff99;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.nav-link {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1rem;
+  position: relative;
+}
+
+/* Menambahkan efek garis bawah saat link aktif */
+.nav-link.active {
+  color: #00ff99; /* Ubah warna teks */
+}
+.nav-link:hover{ 
+  color: #00ff99;
+}
+
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #00ff99; /* Garis bawah berwarna hijau */
+}
+
+/* Hero Section */
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+  margin-top: 180px;
+  gap: 2rem;
+}
+
+.hero-text {
+  max-width: 600px;
+  text-align: left;
+}
+
+.subtitle {
+  color: #ffffff;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.title {
+  color: #ffffff;
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.name {
+  color: #00ff99;
+}
+
+.description {
+  color: #aaaaaa;
+  margin-bottom: 1.5rem;
+}
+
+.social-links {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.icon {
+  color: #00ff99;
+  text-decoration: none;
+  font-size: 1.8rem;
+}
+
+/* Profile Card */
+.profile-card {
+  position: relative;
+  width: 350px;
+  height: 350px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Wrapper untuk memastikan footer berada di bawah */
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Pastikan halaman penuh */
+}
+
+.page-content {
+  flex: 1; /* Membuat konten utama fleksibel */
+}
+
+/* Footer Styling */
+.footer {
+  text-align: center;
+  padding: 1rem 0;
+  /* background-color: #282828; Background warna gelap */
+  color: #ffffffbb; /* Teks berwarna putih */
+  font-size: 0.875rem; /* Ukuran font kecil */
+  margin-top: auto; /* Dorong footer ke bagian bawah */
+}
+
+.footer p {
+  margin: 0;
+}
+
+
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .nav {
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+  }
+
+  .hero-text {
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .profile-card {
+    width: 200px;
+    height: 200px;
+  }
+
+  .circle {
+    border-width: 2px;
+  }
+
+  .social-links {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
