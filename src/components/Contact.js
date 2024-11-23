@@ -72,6 +72,16 @@ const Contact = () => {
         >
           <i className="bi bi-instagram"></i>
         </a>
+        <a
+          href="mailto:miqdad.dzaki@example.com" // Ganti dengan alamat email Anda
+          className="icon"
+          aria-label="Email"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <i className="bi bi-envelope"></i>
+        </a>
+
       </div>
 
       {/* Contact Form */}
