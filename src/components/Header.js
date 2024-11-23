@@ -1,6 +1,4 @@
-// Header.js
 import React from 'react';
-
 
 function Header({ activePage, onNavClick }) {
   return (
@@ -34,6 +32,13 @@ function Header({ activePage, onNavClick }) {
           onClick={() => onNavClick('contact')}
         >
           Contact
+        </a>
+        <a
+          href="#testimoni"
+          className={`nav-link ${activePage === 'testimoni' ? 'active' : ''}`}
+          onClick={() => onNavClick('testimoni')}
+        >
+          Testimoni
         </a>
       </nav>
     </header>
