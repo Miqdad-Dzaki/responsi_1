@@ -1,26 +1,31 @@
 import React, { useState } from "react";
-import profileImage from "../img/pp.png"; // Import profile image
-import Project from './Project'; // Import Project component
-import About from './About'; // Import About component
-import Header from './Header'; // Import Header component
-import Contact from './Contact'; // Import Contact component
-import './../styles/Home.css'; // Import CSS
+import profileImage from "../img/pp.png"; // Profile image
+import Header from './Header'; // Header component
+import Project from './Project'; // Project component
+import About from './About'; // About component
+import Contact from './Contact'; // Contact component
+import Testimoni from './Testimoni'; // Testimoni component
+import './../styles/Home.css'; // CSS Styles
 
 function Home() {
   const [activePage, setActivePage] = useState('home'); // Manage active page state
 
   const handleNavClick = (page) => {
-    setActivePage(page); // Set the active page when a link is clicked
+    setActivePage(page); // Update active page
   };
 
-  return (
-    <div className="page">
-      <div className="container">
-        {/* Header Section */}
-        <Header activePage={activePage} onNavClick={handleNavClick} />
-
-        {/* Home Section */}
-        {activePage === 'home' && (
+  const DynamicPage = () => {
+    switch (activePage) {
+      case 'projects':
+        return <Project />;
+      case 'about':
+        return <About />;
+      case 'contact':
+        return <Contact />;
+      case 'testimoni':
+        return <Testimoni />;
+      default:
+        return (
           <section className="hero" id="home">
             <div className="hero-text">
               <h1 className="title">
@@ -58,7 +63,7 @@ function Home() {
                   <i className="bi bi-instagram"></i>
                 </a>
                 <a
-                  href="mailto:csmiqdad@gmail.com" // Replace with your actual email address
+                  href="mailto:csmiqdad@gmail.com"
                   className="icon"
                   aria-label="Email"
                   target="_blank"
@@ -76,19 +81,21 @@ function Home() {
               />
             </div>
           </section>
-        )}
+        );
+    }
+  };
 
-        {/* Project Section */}
-        {activePage === 'projects' && <Project />}
+  return (
+    <div className="page">
+      <div className="container">
+        {/* Header */}
+        <Header activePage={activePage} onNavClick={handleNavClick} />
 
-        {/* About Section */}
-        {activePage === 'about' && <About />}
-
-        {/* Contact Section */}
-        {activePage === 'contact' && <Contact />}
+        {/* Dynamic Page Section */}
+        <DynamicPage />
       </div>
 
-      {/* Footer Section */}
+      {/* Footer */}
       <footer className="footer">
         <p>© {new Date().getFullYear()} Miqdad Dzaki. All rights reserved.</p>
       </footer>
