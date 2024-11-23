@@ -1,171 +1,167 @@
-import React, { useState, useEffect } from 'react';
-import Swal from 'sweetalert2';
-import './../styles/Testimoni.css';
+.testimonial-section {
+  padding: 20px;
+  margin-top: 100px;
+  /* background-color: #f4f4f4; */
+}
 
-const Testimoni = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    testimonial: '',
-    rating: 0,
-  });
+.testimonial-header {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #00ff99;
+}
 
-  const [testimonials, setTestimonials] = useState([]);
+.testimonial-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
 
-  // Function to load testimonials from localStorage
-  const loadTestimonials = () => {
-    const storedTestimonials = localStorage.getItem('testimonials');
-    if (storedTestimonials) {
-      setTestimonials(JSON.parse(storedTestimonials));
-    }
-  };
+.testimonial-form input,
+.testimonial-form textarea {
+  width: 300px;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
 
-  // Load testimonials on component mount
-  useEffect(() => {
-    loadTestimonials();
-  }, []);
+.testimonial-form .rating {
+  display: flex;
+  gap: 5px;
+  font-size: 20px;
+}
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
+.testimonial-form .submit-button {
+  padding: 10px 20px;
+  background-color: #FF9800;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+}
 
-  const handleRatingChange = (value) => {
-    setFormData({ ...formData, rating: value });
-  };
+.testimonial-list {
+  display: flex; /* Menyusun testimonial secara horizontal */
+  gap: 20px; /* Jarak antar testimonial */
+  padding: 10px 0;
+  justify-content: flex-start;
+  overflow-x: auto; /* Menyebabkan scroll horizontal jika konten melebihi lebar */
+}
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+.testimonial-item {
+  background-color: rgb(255, 255, 255);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  min-width: 280px; /* Lebar minimum kartu testimonial */
+  flex-shrink: 0; /* Menghindari penyusutan ketika ruang terbatas */
+  text-align: center;
+  transition: transform 0.3s ease;
+  margin-bottom: 10px;
+}
 
-    if (!formData.name || !formData.testimonial || formData.rating === 0) {
-      Swal.fire({
-        title: 'Error!',
-        text: 'Please fill in all fields and provide a rating.',
-        icon: 'error',
-        confirmButtonText: 'OK',
-      });
-      return;
-    }
+.testimonial-item:hover {
+  transform: translateY(-5px); /* Efek hover untuk testimonial */
+}
 
-    const newTestimonial = { ...formData, id: Date.now() };
-    const updatedTestimonials = [...testimonials, newTestimonial];
+.avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  object-fit: cover;
+}
 
-    // Save updated testimonials to localStorage
-    localStorage.setItem('testimonials', JSON.stringify(updatedTestimonials));
+.profile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
 
-    // Add new testimonial to the list
-    setTestimonials(updatedTestimonials);
+.info p {
+  margin: 5px 0;
+}
 
-    // Show SweetAlert confirmation
-    Swal.fire({
-      title: 'Testimonial Submitted!',
-      text: 'Thank you for your feedback.',
-      icon: 'success',
-      confirmButtonText: 'OK',
-    });
+.rating {
+  margin: 10px 0;
+}
 
-    // Reset form
-    setFormData({ name: '', testimonial: '', rating: 0 });
-  };
+.star {
+  color: #FF9800;
+}
 
-  const handleDelete = (id) => {
-    // Show confirmation alert before deletion
-    Swal.fire({
-      title: 'Are you sure?',
-      text: 'Do you want to delete this testimonial?',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!',
-      cancelButtonText: 'Cancel',
-    }).then((result) => {
-      if (result.isConfirmed) {
-        const updatedTestimonials = testimonials.filter((testimonial) => testimonial.id !== id);
+.learn-more-button {
+  padding: 5px 15px;
+  background-color: #2196F3;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 10px;
+}
 
-        // Save updated testimonials to localStorage
-        localStorage.setItem('testimonials', JSON.stringify(updatedTestimonials));
+.learn-more-button:hover {
+  background-color: #1976D2;
+}
 
-        setTestimonials(updatedTestimonials);
-
-        // Show SweetAlert confirmation
-        Swal.fire({
-          title: 'Deleted!',
-          text: 'The testimonial has been deleted.',
-          icon: 'success',
-          confirmButtonText: 'OK',
-        });
-      }
-    });
-  };
-
-  const handleEdit = (id) => {
-    const testimonialToEdit = testimonials.find((testimonial) => testimonial.id === id);
-    setFormData({ ...testimonialToEdit });
-    handleDelete(id); // Remove the testimonial from the list before editing
-  };
-
-  return (
-    <section className="testimonial-section" id="testimonial">
-      <div className="testimonial-header">
-        <h1>Submit Your Testimonial</h1>
-      </div>
-
-      {/* Testimonial Form */}
-      <form onSubmit={handleSubmit} className="testimonial-form">
-        <input
-          type="text"
-          id="name"
-          name="name"
-          placeholder="Your name"
-          value={formData.name}
-          onChange={handleInputChange}
-          required
-        />
-
-        <textarea
-          id="testimonial"
-          name="testimonial"
-          placeholder="Your testimonial"
-          value={formData.testimonial}
-          onChange={handleInputChange}
-          required
-        ></textarea>
-
-        <div className="rating">
-          {[1, 2, 3, 4, 5].map((star) => (
-            <span
-              key={star}
-              className={`star ${formData.rating >= star ? 'filled' : ''}`}
-              onClick={() => handleRatingChange(star)}
-            >
-              ★
-            </span>
-          ))}
-        </div>
-
-        <button type="submit" className="submit-button">
-          Submit Testimonial
-        </button>
-      </form>
-
-      {/* Display Testimonials */}
-      <div className="testimonial-list">
-        {testimonials.map((testimonial) => (
-          <div key={testimonial.id} className="testimonial-item">
-            <p><strong>{testimonial.name}</strong></p>
-            <p>{testimonial.testimonial}</p>
-            <p>
-              Rating: {Array.from({ length: testimonial.rating }, (_, i) => '★').join('')}
-            </p>
-            <button onClick={() => handleEdit(testimonial.id)} className="edit-button">
-              Edit
-            </button>
-            <button onClick={() => handleDelete(testimonial.id)} className="delete-button">
-              Delete
-            </button>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-};
-
-export default Testimoni;
+.testimonial-item p {
+    font-size: 18px;
+    color: #000000;
+  }
+  
+  .rating {
+    font-size: 30px; /* Ukuran bintang diperbesar */
+    color: #FF9800;
+    margin-top: 10px;
+  }
+  
+  .star {
+    cursor: pointer;
+  }
+  
+  .star.filled {
+    color: #FF9800; /* Bintang yang terisi warna emas */
+  }
+  
+  /* Rating Stars */
+.rating {
+    font-size: 30px; /* Ukuran bintang diperbesar */
+    color: #FF9800; /* Bintang yang tidak terisi berwarna abu-abu terang (default) */
+    margin-top: 10px;
+  }
+  
+  .star {
+    cursor: pointer;
+    color: #bbb; /* Bintang yang tidak terisi berwarna putih/abu-abu terang */
+    transition: color 0.2s ease-in-out; /* Transisi halus untuk perubahan warna */
+  }
+  
+  .star.filled {
+    color: #FF9800; /* Bintang yang terisi berwarna emas */
+  }
+  
+  /* Rating Stars */
+.rating {
+    font-size: 30px; /* Ukuran bintang diperbesar */
+    margin-top: 10px;
+  }
+  
+  .star {
+    cursor: pointer;
+    color: #bbb; /* Bintang yang tidak terisi berwarna abu-abu terang */
+    transition: color 0.2s ease-in-out; /* Transisi halus untuk perubahan warna */
+  }
+  
+  /* Bintang yang terisi akan berwarna kuning/emas */
+  .star.filled {
+    color: #FF9800; /* Bintang yang terisi berwarna emas */
+  }
+  
+  /* Jika ada rating yang sudah diberikan, semua bintang yang dipilih akan tetap kuning */
+  .star.filled-previous {
+    color: #FF9800; /* Warna bintang yang telah dipilih (rating) */
+  }
+  
+  
