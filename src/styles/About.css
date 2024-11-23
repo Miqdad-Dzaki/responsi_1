@@ -1,110 +1,96 @@
-/* Contact Section Styles */
-.contact-section {
-    padding: 2rem;
-    padding-top: 140px;
+/* General About Section Styles */
+.about-section {
+    padding: 60px 20px;
+    padding-top: 85px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    background-color: transparent; /* Optional: Light background for contact section */
-  }
-  
-  /* Contact Header */
-  .contact-header h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
-    color: #00ff99;
-  }
-  
-  /* Social Media Links */
-  .social-link {
-    margin-bottom: 2rem;
+}
+
+.about-container {
     display: flex;
-    justify-content: center; /* Center the icons */
-  }
-  
-  .social-link .icon {
-    font-size: 2rem;
-    margin: 0 1rem;
-    color: #00ff99;
-    transition: color 0.3s ease-in-out;
-  }
-  
-  .social-link.icon:hover {
-    color: #0073e6;
-  }
-  
-  /* Contact Form */
-  .contact-form {
-    max-width: 600px;
-    margin: 0 auto;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;  /* Menambahkan untuk memastikan konten berada di tengah */
+    max-width: 1200px;
+    gap: 40px;
+    width: 100%; /* Menyesuaikan lebar kontainer menjadi 80% agar lebih kecil dan responsif */
+}
+
+/* Image Section */
+.about-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Memastikan gambar berada di tengah */
+    text-align: center;
+}
+
+.profile-i {
+    width: 53%; /* Ukuran gambar lebih kecil dalam px */
+    /* height: 3500px; Ukuran gambar lebih kecil dalam px */
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+}
+
+/* Content Section */
+.about-content {
+    flex: 2;
     text-align: left;
-  }
-  
-  .contact-form form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .contact-form label {
+}
+
+.about-content h1 {
+    font-size: 2.5rem;
     font-weight: bold;
-    margin-bottom: 0.5rem;
-    color: #000000; /* Make labels darker for readability */
-  }
-  
-  .contact-form input,
-  .contact-form textarea {
-    padding: 0.75rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.about-right h2 {
+  color: #00ff99; /* Warna awal */
+  transition: color 0.3s ease; /* Tambahkan animasi transisi */
+}
+
+.about-content p {
     font-size: 1rem;
-    border: 1px solid #a5a5a5;
-    border-radius: 5px;
-    margin-bottom: 1rem;
-    width: 100%;
-    color: #000000;
-    resize: vertical;
+    color: #ffffff;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* Styling untuk CV Button */
+.cv-button {
+    margin-top: 25px;
+    display: inline-block;
+    background-color: #00ff99; /* Warna latar belakang biru */
+    color: black; /* Teks berwarna putih */
+    padding: 10px 15px; /* Padding tombol */
+    font-size: 1rem; /* Ukuran font */
+    font-weight: bold; /* Berat font */
+    text-decoration: none; /* Menghapus garis bawah */
+    border-radius: 8px; /* Sudut tombol melengkung */
+    transition: background-color 0.3s ease; /* Efek transisi saat hover */
+    text-align: center; /* Memastikan teks tombol rata tengah */
   }
   
-  .contact-form input:focus,
-  .contact-form textarea:focus {
-    outline: none;
-    border-color: #0073e6;
+  .cv-button:hover {
+    background-color: #00ff84; /* Warna latar belakang biru gelap saat hover */
+
   }
   
-  .contact-form .submit-button {
-    background-color: #00ff99;
-    color: #000000;
-    padding: 0.75rem;
-    font-size: 1rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
-    width: 104%; /* Make the button span the full width */
-  }
-  
-  .contact-form .submit-button:hover {
-    background-color: #00ff84;
-    box-shadow: white;
-  }
-  
-  /* Responsive Adjustments */
-  @media (max-width: 768px) {
-    .contact-section {
-      padding: 1rem; /* Reduce padding for smaller screens */
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .about-container {
+        flex-direction: column;
+        text-align: center;
     }
-  
-    .contact-form {
-      padding: 0 1rem; /* Add some padding on the sides */
+
+    .about-content {
+        text-align: center;
     }
-  
-    .social-links {
-      flex-direction: column; /* Stack icons on smaller screens */
-      align-items: center;
-    }
-  
-    .social-links .icon {
-      margin: 0.5rem 0; /* Add space between icons */
-    }
-  
-    .contact-form .submit-button {
-      width: auto; /* Make button size adapt on small screens */
-    }
-  }
-  
+}
