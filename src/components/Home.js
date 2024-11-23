@@ -57,6 +57,15 @@ function Home() {
                 >
                   <i className="bi bi-instagram"></i>
                 </a>
+                <a
+                  href="mailto:csmiqdad@gmail.com" // Replace with your actual email address
+                  className="icon"
+                  aria-label="Email"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <i className="bi bi-envelope"></i>
+                </a>
               </div>
             </div>
             <div className="profile-card">
