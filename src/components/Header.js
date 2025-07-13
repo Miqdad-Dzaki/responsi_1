@@ -33,13 +33,6 @@ function Header({ activePage, onNavClick }) {
         >
           Contact
         </a>
-        // <a
-        //   href="#testimoni"
-        //   className={`nav-link ${activePage === 'testimoni' ? 'active' : ''}`}
-        //   onClick={() => onNavClick('testimoni')}
-        // >
-        //   Testimoni
-        // </a>
       </nav>
     </header>
   );
